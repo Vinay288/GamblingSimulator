@@ -19,7 +19,7 @@ public class GamblingSimulator {
 
 	}
 
-	static void resignStakePerDay() {
+	static int resignStakePerDay() {
 
 		int totalAmountForDay = GAMBLER_STAKE_EVERYDAY;
 		while (totalAmountForDay != GAMBLER_RESIGN_STAKE + GAMBLER_STAKE_EVERYDAY
@@ -31,7 +31,7 @@ public class GamblingSimulator {
 				totalAmountForDay--;
 			}
 		}
-		System.out.println("Resigning for the day with money " + totalAmountForDay);
+		return totalAmountForDay;
 	}
 
 	static void resignStakeFor20Days() {
@@ -41,17 +41,7 @@ public class GamblingSimulator {
 
 		for (int i = 0; i < TOTAL_DAYS; i++) {
 
-			int totalAmountForDay = GAMBLER_STAKE_EVERYDAY;
-			while (totalAmountForDay != GAMBLER_RESIGN_STAKE + GAMBLER_STAKE_EVERYDAY
-					&& totalAmountForDay != GAMBLER_STAKE_EVERYDAY - GAMBLER_RESIGN_STAKE) {
-				int outcome = gamblerGame();
-
-				if (outcome == 1) {
-					totalAmountForDay++;
-				} else {
-					totalAmountForDay--;
-				}
-			}
+			int totalAmountForDay = resignStakePerDay();
 			if (totalAmountForDay < 100)
 				totalLoss += GAMBLER_RESIGN_STAKE;
 			else
@@ -71,17 +61,7 @@ public class GamblingSimulator {
 			int totalLoss = 0, totalWin = 0, totalWinDays = 0, totalLossDays = 0;
 			for (int i = 0; i < MONTH; i++) {
 
-				int totalAmountForDay = GAMBLER_STAKE_EVERYDAY;
-				while (totalAmountForDay != GAMBLER_RESIGN_STAKE + GAMBLER_STAKE_EVERYDAY
-						&& totalAmountForDay != GAMBLER_STAKE_EVERYDAY - GAMBLER_RESIGN_STAKE) {
-					int outcome = gamblerGame();
-
-					if (outcome == 1) {
-						totalAmountForDay++;
-					} else {
-						totalAmountForDay--;
-					}
-				}
+				int totalAmountForDay = resignStakePerDay();
 				if (totalAmountForDay < 100) {
 					totalLoss += GAMBLER_RESIGN_STAKE;
 					totalLossDays++;
@@ -91,8 +71,8 @@ public class GamblingSimulator {
 				}
 				totalAmount += totalAmountForDay;
 			}
-			System.out.println("month*********  " + (j+1));
-			System.out.println("Total number of days won in one month  " + totalWinDays );
+			System.out.println("month*********  " + (j + 1));
+			System.out.println("Total number of days won in one month  " + totalWinDays);
 			System.out.println("Total number of days lost in one month  " + totalLossDays);
 			System.out.println("Total win at the end month " + totalWin);
 			System.out.println("Total loose at the month " + totalLoss);

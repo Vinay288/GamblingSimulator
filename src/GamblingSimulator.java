@@ -4,6 +4,16 @@ public class GamblingSimulator {
 	static final int GAMBLER_BET_FOR_EACH_GAME = 1;
 
 	public static void main(String[] args) {
+		gamblerBet();
+	}
+
+	static int gamblerGame() {
+		int outcomeOfGame = (int) (Math.random() * 2);
+		return outcomeOfGame;
+
+	}
+
+	static void gamblerBet() {
 		int totalAmountForDay = GAMBLER_STAKE_EVERYDAY;
 		int outcome = gamblerGame();
 
@@ -14,11 +24,5 @@ public class GamblingSimulator {
 			totalAmountForDay--;
 			System.out.println("loose");
 		}
-	}
-
-	static int gamblerGame() {
-		int outcomeOfGame = (int) (Math.random() * 2);
-		return outcomeOfGame;
-
 	}
 }

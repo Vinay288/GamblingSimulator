@@ -14,7 +14,7 @@ public class GamblingSimulator {
 
 	}
 
-	static void resignStakePerDay() {
+	static int resignStakePerDay() {
 		int totalAmountForDay = GAMBLER_STAKE_EVERYDAY;
 		while (totalAmountForDay != GAMBLER_RESIGN_STAKE + GAMBLER_STAKE_EVERYDAY
 				&& totalAmountForDay != GAMBLER_STAKE_EVERYDAY - GAMBLER_RESIGN_STAKE) {
@@ -25,23 +25,14 @@ public class GamblingSimulator {
 				totalAmountForDay--;
 			}
 		}
-		System.out.println("Resigning for the day with money " + totalAmountForDay);
+		return totalAmountForDay;
 	}
 
 	static void resignStakeFor20Days() {
 		int totalAmount = GAMBLER_STAKE_EVERYDAY;
 		int totalLoss = 0, totalWin = 0;
 		for (int i = 0; i < 20; i++) {
-			int totalAmountForDay = GAMBLER_STAKE_EVERYDAY;
-			while (totalAmountForDay != GAMBLER_RESIGN_STAKE + GAMBLER_STAKE_EVERYDAY
-					&& totalAmountForDay != GAMBLER_STAKE_EVERYDAY - GAMBLER_RESIGN_STAKE) {
-				int outcome = gamblerGame();
-				if (outcome == 1) {
-					totalAmountForDay++;
-				} else {
-					totalAmountForDay--;
-				}
-			}
+			int totalAmountForDay = resignStakePerDay();
 			if (totalAmountForDay < 100)
 				totalLoss += GAMBLER_RESIGN_STAKE;
 			else

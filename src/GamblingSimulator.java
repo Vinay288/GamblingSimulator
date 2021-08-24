@@ -93,7 +93,7 @@ public class GamblingSimulator {
 				totalAmount += totalAmountForDay;
 			}
 			luckiestMonth = maxProfit >= totalWin ? luckiestMonth : j + 1;
-			unLuckiestMonth = maxLoss >= totalLoss ? j+1 : unLuckiestMonth;
+			unLuckiestMonth = maxLoss >= totalLoss ? j + 1 : unLuckiestMonth;
 			maxProfit = maxProfit >= totalWin ? maxProfit : totalWin;
 			maxLoss = maxLoss >= totalLoss ? totalLoss : maxLoss;
 
@@ -103,6 +103,10 @@ public class GamblingSimulator {
 			System.out.println("Total win at the end month " + totalWin);
 			System.out.println("Total loose at the month " + totalLoss);
 			System.out.println("Total amount at the month " + totalAmount);
+			if (totalWin >= totalLoss) {
+				continue;
+			} else
+				break;
 		}
 		System.out.println("Luckiest Month is " + luckiestMonth + "  profit he earned was " + maxProfit);
 		System.out.println("UnLuckiest Month is " + unLuckiestMonth + "  loss was " + maxLoss);

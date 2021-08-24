@@ -67,6 +67,7 @@ public class GamblingSimulator {
 
 	static void gambleForOneYear() {
 		int totalAmount = 0;
+		int luckiestMonth = -1, unLuckiestMonth = -1, maxProfit = 0, maxLoss = Integer.MAX_VALUE;
 		for (int j = 0; j < 12; j++) {
 			int totalLoss = 0, totalWin = 0, totalWinDays = 0, totalLossDays = 0;
 			for (int i = 0; i < MONTH; i++) {
@@ -91,12 +92,19 @@ public class GamblingSimulator {
 				}
 				totalAmount += totalAmountForDay;
 			}
-			System.out.println("month*********  " + (j+1));
-			System.out.println("Total number of days won in one month  " + totalWinDays );
+			luckiestMonth = maxProfit >= totalWin ? luckiestMonth : j + 1;
+			unLuckiestMonth = maxLoss >= totalLoss ? j+1 : unLuckiestMonth;
+			maxProfit = maxProfit >= totalWin ? maxProfit : totalWin;
+			maxLoss = maxLoss >= totalLoss ? totalLoss : maxLoss;
+
+			System.out.println("month*********  " + (j + 1));
+			System.out.println("Total number of days won in one month  " + totalWinDays);
 			System.out.println("Total number of days lost in one month  " + totalLossDays);
 			System.out.println("Total win at the end month " + totalWin);
 			System.out.println("Total loose at the month " + totalLoss);
 			System.out.println("Total amount at the month " + totalAmount);
 		}
+		System.out.println("Luckiest Month is " + luckiestMonth + "  profit he earned was " + maxProfit);
+		System.out.println("UnLuckiest Month is " + unLuckiestMonth + "  loss was " + maxLoss);
 	}
 }
